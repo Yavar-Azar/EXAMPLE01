@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quantum-ESPRESSO Post-processings &mdash; NWE3 001 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Spin-orbit coupling in halide perovskite" href="SOC_halides.html" />
+    <link rel="prev" title="Summary" href="summart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> NWE3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="summart.html">Summary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantum-ESPRESSO Post-processings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Density-of-states">Density of states</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Single-Dos-with-E_f">Single Dos with E_f</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#Band_Structure">Band_Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#POTENTIAL">POTENTIAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#GPAW-Example">GPAW Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#surface-ENERGY">surface ENERGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#Quantum-espresso-with-ASE">Quantum espresso with ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#New-title">New title</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SOC_halides.html">Spin-orbit coupling in halide perovskite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SOC_halides.html#References">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NWE3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quantum-ESPRESSO Post-processings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/QE_PP1.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Quantum-ESPRESSO-Post-processings">
+<h1>Quantum-ESPRESSO Post-processings<a class="headerlink" href="#Quantum-ESPRESSO-Post-processings" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Here we will present some simple pythhon codes to do our qe post-process</div>
+<div class="line">! use <strong>SEABORN</strong> for high quality 2d data plots</div>
+<div class="line">first equation</div>
+<div class="line"><span class="math notranslate nohighlight">\(\alpha=\int x^2dx\)</span></div>
+<div class="line"><a class="reference external" href="test.data">data</a></div>
+</div>
+<div class="section" id="Density-of-states">
+<h2>Density of states<a class="headerlink" href="#Density-of-states" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Single-Dos-with-E_f">
+<h3>Single Dos with E_f<a class="headerlink" href="#Single-Dos-with-E_f" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.units</span> <span class="kn">import</span> <span class="n">Ry</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
+<span class="kn">from</span> <span class="nn">espresso</span> <span class="kn">import</span> <span class="n">espresso</span>
+<span class="kn">from</span> <span class="nn">ase.calculators.espresso</span> <span class="kn">import</span> <span class="n">Espresso</span>
+<span class="kn">from</span> <span class="nn">ase.constraints</span> <span class="kn">import</span> <span class="n">UnitCellFilter</span>
+<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">LBFGS</span>
+
+
+
+<span class="n">pseudopotentials</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Si&#39;</span><span class="p">:</span> <span class="s1">&#39;Si.pbe-n-van.UPF&#39;</span><span class="p">}</span>
+
+<span class="n">input_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;system&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ecutwfc&#39;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+        <span class="s1">&#39;ecutrho&#39;</span><span class="p">:</span> <span class="mi">276</span><span class="p">,</span>
+        <span class="s1">&#39;nbnd&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
+        <span class="s1">&#39;occupations&#39;</span><span class="p">:</span><span class="s1">&#39;smearing&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;smearing&#39;</span><span class="p">:</span><span class="s1">&#39;mp&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;degauss&#39;</span><span class="p">:</span> <span class="mf">0.001</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;control&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span><span class="s1">&#39;high&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;electrons&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;electron_maxstep&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;diagonalization&#39;</span><span class="p">:</span><span class="s1">&#39;david&#39;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="mf">5.43</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;Si2&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                     <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)],</span>
+             <span class="n">pbc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a0</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">test</span><span class="o">.</span><span class="n">set_cell</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+               <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+               <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> <span class="n">scale_atoms</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">calc</span> <span class="o">=</span> <span class="n">Espresso</span><span class="p">(</span><span class="n">pseudopotentials</span><span class="o">=</span><span class="n">pseudopotentials</span><span class="p">,</span>
+              <span class="n">tstress</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">tprnfor</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mpitest&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">input_data</span><span class="o">=</span><span class="n">input_data</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+<span class="c1">#ucf = UnitCellFilter(test)</span>
+<span class="c1">#opt = LBFGS(ucf)</span>
+<span class="c1">#opt.run(fmax=0.005)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>-261.1324465970895
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">Espresso37</span> <span class="kn">import</span> <span class="n">QElog</span>
+<span class="n">test</span><span class="o">=</span><span class="n">QElog</span><span class="p">(</span><span class="s2">&quot;mpitest.pwo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+your file is in path
+it seems normal file
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span>
+<span class="n">view</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">font_manager</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="kn">as</span> <span class="nn">path_effects</span>
+
+
+<span class="c1">###############</span>
+<span class="n">font_manager</span><span class="o">.</span><span class="n">findfont</span><span class="p">(</span><span class="s1">&#39;Helvetica World&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica World&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">serif</span><span class="o">=</span> <span class="s1">&#39;Helvetica World&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">hfont</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontname&#39;</span><span class="p">:</span><span class="s1">&#39;Helvetica World&#39;</span><span class="p">}</span>
+<span class="c1">#plt.rc(&#39;font&#39;, family=&#39;sans-serif&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.major.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.minor.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.major.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.minor.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.major.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.minor.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.major.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.75</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.minor.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;in&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;in&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">y2</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Energy (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;DOS (states/eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">path_effects</span><span class="o">.</span><span class="n">SimpleLineShadow</span><span class="p">(),</span>
+                       <span class="n">path_effects</span><span class="o">.</span><span class="n">Normal</span><span class="p">()])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span> <span class="n">where</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span>  <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;1DOS.png&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[ 1.          1.03807615  1.0761523   1.11422846  1.15230461  1.19038076
+  1.22845691  1.26653307  1.30460922  1.34268537  1.38076152  1.41883768
+  1.45691383  1.49498998  1.53306613  1.57114228  1.60921844  1.64729459
+  1.68537074  1.72344689  1.76152305  1.7995992   1.83767535  1.8757515
+  1.91382766  1.95190381  1.98997996  2.02805611  2.06613226  2.10420842
+  2.14228457  2.18036072  2.21843687  2.25651303  2.29458918  2.33266533
+  2.37074148  2.40881764  2.44689379  2.48496994  2.52304609  2.56112224
+  2.5991984   2.63727455  2.6753507   2.71342685  2.75150301  2.78957916
+  2.82765531  2.86573146  2.90380762  2.94188377  2.97995992  3.01803607
+  3.05611222  3.09418838  3.13226453  3.17034068  3.20841683  3.24649299
+  3.28456914  3.32264529  3.36072144  3.3987976   3.43687375  3.4749499
+  3.51302605  3.5511022   3.58917836  3.62725451  3.66533066  3.70340681
+  3.74148297  3.77955912  3.81763527  3.85571142  3.89378758  3.93186373
+  3.96993988  4.00801603  4.04609218  4.08416834  4.12224449  4.16032064
+  4.19839679  4.23647295  4.2745491   4.31262525  4.3507014   4.38877756
+  4.42685371  4.46492986  4.50300601  4.54108216  4.57915832  4.61723447
+  4.65531062  4.69338677  4.73146293  4.76953908  4.80761523  4.84569138
+  4.88376754  4.92184369  4.95991984  4.99799599  5.03607214  5.0741483
+  5.11222445  5.1503006   5.18837675  5.22645291  5.26452906  5.30260521
+  5.34068136  5.37875752  5.41683367  5.45490982  5.49298597  5.53106212
+  5.56913828  5.60721443  5.64529058  5.68336673  5.72144289  5.75951904
+  5.79759519  5.83567134  5.87374749  5.91182365  5.9498998   5.98797595
+  6.0260521   6.06412826  6.10220441  6.14028056  6.17835671  6.21643287
+  6.25450902  6.29258517  6.33066132  6.36873747  6.40681363  6.44488978
+  6.48296593  6.52104208  6.55911824  6.59719439  6.63527054  6.67334669
+  6.71142285  6.749499    6.78757515  6.8256513   6.86372745  6.90180361
+  6.93987976  6.97795591  7.01603206  7.05410822  7.09218437  7.13026052
+  7.16833667  7.20641283  7.24448898  7.28256513  7.32064128  7.35871743
+  7.39679359  7.43486974  7.47294589  7.51102204  7.5490982   7.58717435
+  7.6252505   7.66332665  7.70140281  7.73947896  7.77755511  7.81563126
+  7.85370741  7.89178357  7.92985972  7.96793587  8.00601202  8.04408818
+  8.08216433  8.12024048  8.15831663  8.19639279  8.23446894  8.27254509
+  8.31062124  8.34869739  8.38677355  8.4248497   8.46292585  8.501002
+  8.53907816  8.57715431  8.61523046  8.65330661  8.69138277  8.72945892
+  8.76753507  8.80561122  8.84368737  8.88176353  8.91983968  8.95791583
+  8.99599198  9.03406814  9.07214429  9.11022044  9.14829659  9.18637275
+  9.2244489   9.26252505  9.3006012   9.33867735  9.37675351  9.41482966
+  9.45290581  9.49098196  9.52905812  9.56713427  9.60521042  9.64328657
+  9.68136273  9.71943888  9.75751503  9.79559118  9.83366733  9.87174349
+  9.90981964  9.94789579  9.98597194 10.0240481  10.06212425 10.1002004
+ 10.13827655 10.17635271 10.21442886 10.25250501 10.29058116 10.32865731
+ 10.36673347 10.40480962 10.44288577 10.48096192 10.51903808 10.55711423
+ 10.59519038 10.63326653 10.67134269 10.70941884 10.74749499 10.78557114
+ 10.82364729 10.86172345 10.8997996  10.93787575 10.9759519  11.01402806
+ 11.05210421 11.09018036 11.12825651 11.16633267 11.20440882 11.24248497
+ 11.28056112 11.31863727 11.35671343 11.39478958 11.43286573 11.47094188
+ 11.50901804 11.54709419 11.58517034 11.62324649 11.66132265 11.6993988
+ 11.73747495 11.7755511  11.81362725 11.85170341 11.88977956 11.92785571
+ 11.96593186 12.00400802 12.04208417 12.08016032 12.11823647 12.15631263
+ 12.19438878 12.23246493 12.27054108 12.30861723 12.34669339 12.38476954
+ 12.42284569 12.46092184 12.498998   12.53707415 12.5751503  12.61322645
+ 12.65130261 12.68937876 12.72745491 12.76553106 12.80360721 12.84168337
+ 12.87975952 12.91783567 12.95591182 12.99398798 13.03206413 13.07014028
+ 13.10821643 13.14629259 13.18436874 13.22244489 13.26052104 13.29859719
+ 13.33667335 13.3747495  13.41282565 13.4509018  13.48897796 13.52705411
+ 13.56513026 13.60320641 13.64128257 13.67935872 13.71743487 13.75551102
+ 13.79358717 13.83166333 13.86973948 13.90781563 13.94589178 13.98396794
+ 14.02204409 14.06012024 14.09819639 14.13627255 14.1743487  14.21242485
+ 14.250501   14.28857715 14.32665331 14.36472946 14.40280561 14.44088176
+ 14.47895792 14.51703407 14.55511022 14.59318637 14.63126253 14.66933868
+ 14.70741483 14.74549098 14.78356713 14.82164329 14.85971944 14.89779559
+ 14.93587174 14.9739479  15.01202405 15.0501002  15.08817635 15.12625251
+ 15.16432866 15.20240481 15.24048096 15.27855711 15.31663327 15.35470942
+ 15.39278557 15.43086172 15.46893788 15.50701403 15.54509018 15.58316633
+ 15.62124248 15.65931864 15.69739479 15.73547094 15.77354709 15.81162325
+ 15.8496994  15.88777555 15.9258517  15.96392786 16.00200401 16.04008016
+ 16.07815631 16.11623246 16.15430862 16.19238477 16.23046092 16.26853707
+ 16.30661323 16.34468938 16.38276553 16.42084168 16.45891784 16.49699399
+ 16.53507014 16.57314629 16.61122244 16.6492986  16.68737475 16.7254509
+ 16.76352705 16.80160321 16.83967936 16.87775551 16.91583166 16.95390782
+ 16.99198397 17.03006012 17.06813627 17.10621242 17.14428858 17.18236473
+ 17.22044088 17.25851703 17.29659319 17.33466934 17.37274549 17.41082164
+ 17.4488978  17.48697395 17.5250501  17.56312625 17.6012024  17.63927856
+ 17.67735471 17.71543086 17.75350701 17.79158317 17.82965932 17.86773547
+ 17.90581162 17.94388778 17.98196393 18.02004008 18.05811623 18.09619238
+ 18.13426854 18.17234469 18.21042084 18.24849699 18.28657315 18.3246493
+ 18.36272545 18.4008016  18.43887776 18.47695391 18.51503006 18.55310621
+ 18.59118236 18.62925852 18.66733467 18.70541082 18.74348697 18.78156313
+ 18.81963928 18.85771543 18.89579158 18.93386774 18.97194389 19.01002004
+ 19.04809619 19.08617234 19.1242485  19.16232465 19.2004008  19.23847695
+ 19.27655311 19.31462926 19.35270541 19.39078156 19.42885772 19.46693387
+ 19.50501002 19.54308617 19.58116232 19.61923848 19.65731463 19.69539078
+ 19.73346693 19.77154309 19.80961924 19.84769539 19.88577154 19.9238477
+ 19.96192385 20.        ]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/QE_PP1_4_1.png" src="_images/QE_PP1_4_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="Band_Structure">
+<h1>Band_Structure<a class="headerlink" href="#Band_Structure" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">This script calculates band for spin_degenrate (spin=1) and non-degenrate (spin=2)</div>
+<div class="line">In this calculation one should change verbosity to high and use kpoints like</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">Espresso37</span> <span class="kn">import</span> <span class="n">QElog</span>
+
+<span class="c1">#bandin=input(&quot;enter the name of band in file  :   &quot;)</span>
+<span class="n">bandout</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;enter the name of band out file  :   &quot;</span><span class="p">)</span>
+<span class="n">Spin</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;enter spin polarization  1 or 2  :&quot;</span><span class="p">))</span>
+<span class="n">test</span><span class="o">=</span><span class="n">QElog</span><span class="p">(</span><span class="n">bandout</span><span class="p">,</span><span class="n">spin</span><span class="o">=</span><span class="n">Spin</span><span class="p">)</span>
+<span class="n">gap</span><span class="o">=</span><span class="n">test</span><span class="o">.</span><span class="n">GAP</span>
+<span class="n">fermi</span><span class="o">=</span><span class="n">test</span><span class="o">.</span><span class="n">HOMO</span>
+<span class="n">test</span><span class="o">.</span><span class="n">plotband</span><span class="p">(</span><span class="n">fermi</span><span class="p">,</span> <span class="s2">&quot;newband.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="POTENTIAL">
+<h1>POTENTIAL<a class="headerlink" href="#POTENTIAL" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="GPAW-Example">
+<h1>GPAW Example<a class="headerlink" href="#GPAW-Example" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
+<span class="kn">from</span> <span class="nn">gpaw</span> <span class="kn">import</span> <span class="n">PW</span><span class="p">,</span> <span class="n">GPAW</span><span class="p">,</span> <span class="n">LCAO</span>
+
+<span class="n">test</span><span class="o">=</span><span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;Si&#39;</span><span class="p">,</span> <span class="s1">&#39;fcc&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">GPAW</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">PW</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;PBE&#39;</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">txt</span><span class="o">=</span><span class="s2">&quot;out.txt&quot;</span><span class="p">))</span>
+<span class="n">test</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>-3.4048627185542024
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="surface-ENERGY">
+<h1>surface ENERGY<a class="headerlink" href="#surface-ENERGY" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">we can calculate surface energy from</div>
+<div class="line"><span class="math notranslate nohighlight">\(E_S=\alpha \int f(x)dx\)</span></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">y2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/QE_PP1_12_0.png" src="_images/QE_PP1_12_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Quantum-espresso-with-ASE">
+<h1>Quantum espresso with ASE<a class="headerlink" href="#Quantum-espresso-with-ASE" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">add this line to your .bashrc</div>
+<div class="line"><strong>export ASE_ESPRESSO_COMMAND=”/home/yavar001/SOURCES/q-e-qe-6.4/bin/pw.x -in PREFIX.pwi &gt; PREFIX.pwo”</strong></div>
+<div class="line">and then start your calculation</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">Espresso37</span> <span class="kn">import</span> <span class="n">QElog</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>array([-0.01243185, -0.01243185, -0.01243185, -0.        , -0.        ,
+        0.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="New-title">
+<h1>New title<a class="headerlink" href="#New-title" title="Permalink to this headline">¶</a></h1>
+<p>Here we check equation <span class="math notranslate nohighlight">\(\alpha=\int x dx\)</span></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">y2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/QE_PP1_16_0.png" src="_images/QE_PP1_16_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SOC_halides.html" class="btn btn-neutral float-right" title="Spin-orbit coupling in halide perovskite" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="summart.html" class="btn btn-neutral float-left" title="Summary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ytazar
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

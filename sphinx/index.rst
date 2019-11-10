@@ -11,6 +11,16 @@ Welcome to myweb's documentation!
    :caption: Contents:
 
    summart
+   test01
+   QE_PP1
+   SOC_halides
+
+
+
+PROJECTS
+=================
+
+
 
 Indices and tables
 ==================
